@@ -11,12 +11,14 @@ int manhattan_dist(pair<int,int> pos_x , pair<int,int> pos_y) {
     return abs(x2 - x1) + abs(y2 - y1);
 }
 
-pair<int, pair<int,int> > find_shortest(pair<int,int> starting_position, vector<pair<int, pair<int, int> > > locations) {
+pair<int, pair<int,int> >  find_shortest(pair<int,int> starting_position, vector<pair<int, pair<int, int> > > locations) {
     vector<pair<int, pair<int,int> > > distances;
 
     for(int i = 0; i < locations.size(); i++) {
-        int distance = manhattan_dist(starting_position, locations[i].second);
-        distances.push_back(make_pair(distance, locations[i].second));   
+        for(int j = 0; j < locations.size(); j++) {
+            int distance = manhattan_dist(locations[i].second, locations[j].second);
+            distances.push_back(make_pair(distance, locations[j].second));
+        }
     }
     sort(distances.begin(), distances.end());
     return distances[1];
@@ -24,15 +26,9 @@ pair<int, pair<int,int> > find_shortest(pair<int,int> starting_position, vector<
 
 int find_path(pair<int,int> starting_position, vector<pair<int, pair<int, int> > >  locations) {
     for(int i = 0; i < locations.size(); i++) {
-        pair<int, pair<int,int> > shortest = find_shortest(locations[i].second, locations);
-        cout << shortest.first << ": " << shortest.second.first << " " << shortest.second.first;
-        cout << "\n";
-    }
-
-
-    
-
-    
+        pair<int, pair<int,int> >  adj = find_shortest(starting_position, locations);
+        cout << adj.first << ":" << adj.second.first << " " << adj.second.second << "\n"; 
+    } 
 }
 
 
