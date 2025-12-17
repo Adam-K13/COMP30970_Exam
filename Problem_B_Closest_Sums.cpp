@@ -31,7 +31,13 @@ int binarySearch(vector<int> all_sums, int x) {
             high = mid - 1;
     }
 
-    return low;
+    if(all_sums[low + ((high -low) /2)] > x) {
+        return (low + (high - low) / 2);
+    }  else {
+        return (low + (high - low) / 2) - 1; 
+    }
+    
+
 }
 
 
@@ -49,10 +55,6 @@ int main() {
         
         vector<int> sums = all_sums(set_of_numbers);
         sort(sums.begin(), sums.end());
-        for(int j = 0; j < sums.size(); j++) {
-            cout << sums[j] << " ";
-        }
-        cout << "\n";
             
         int num_queries;
         cin >> num_queries;
