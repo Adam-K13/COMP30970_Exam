@@ -31,10 +31,11 @@ int binarySearch(vector<int> all_sums, int x) {
             high = mid - 1;
     }
 
-    if(all_sums[low + ((high -low) /2)] > x) {
-        return (low + (high - low) / 2);
+    int size = all_sums.size();
+    if(all_sums[low + ((high -low) /2)] < x) {
+        return min(high, size);
     }  else {
-        return (low + (high - low) / 2) - 1; 
+        return max(0, high); 
     }
     
 
