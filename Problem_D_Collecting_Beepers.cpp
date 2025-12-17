@@ -1,3 +1,7 @@
+//dijkstra to find shortest path from each to every other node
+//sum of costs from start to next then to next closest untill all beepers reached
+//from the last beeper back = total cost
+
 #include <iostream>
 #include <algorithm>
 using namespace std;
